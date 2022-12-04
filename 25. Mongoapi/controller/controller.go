@@ -27,3 +27,29 @@ func init(){
 	//collection instance 
 	fmt.Println("collection instance is ready")
 }
+
+//Mongodb helper
+
+//insert 1 record
+
+func insetOneMovie(movie model.Netflix){
+	inserted,err:=collection.InsertOne(contex.Backgroud(),movie)
+	if err != nil {
+		log.Fatal(err) 
+	}
+	fmt.Println("Inserted 1 movie in DB with Id: ",inserted.InsertedID)
+}
+
+//update 1 record
+
+func updateOneMovie(movieID string){
+	id,_:=primitive.ObjectIDFromHex(movieID)
+	filter:=bson.M{"_id": id}
+	update:=bson.M{"$set":bson.M{"watched": true}}
+
+	result,err:=collection.UpdateOne(contex.Backgroud(),filter,update)
+	if err != nil {
+		log.Fatal(err) 
+	}
+	fmt.Println("modified count: ",result.ModifiedCount)
+}
