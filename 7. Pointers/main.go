@@ -10,7 +10,7 @@ func main(){
 	mynumber := 245
 	var point = &mynumber  //& is referencing a pointer
 	fmt.Println("address of  pointers is: ", point)
-	fmt.Println("address of  pointers is: ", *point)  //This is value inside pointer
+	fmt.Println("value of  pointers is: ", *point)  //This is value inside pointer
 
 	*point = *point * 2  
 	fmt.Println("Multiplied value is: ", mynumber)
