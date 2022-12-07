@@ -1,10 +1,20 @@
 package controller
 
-import "go.mongodb.org/mongo-driver/mongo"
-import "encoding/json"
-import "github.com/gorilla/mux"
-import "log"
-import "fmt"
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+
+	"github.com/gorilla/mux"
+	"github.com/hiteshchoudhary/mongoapi/model"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+)
+
 
 //before you try to use the password,firewall rule is set to my ip and DB is already revoked
 const connectionString="mongodb+srv://manikesh:manikesh@cluster0.fjsdtsc.mongodb.net/?retryWrites=true&w=majority"
@@ -107,7 +117,7 @@ func GetMyAllMovies(w http.ResponseWriter,r *http.Request){
 }
 
 func CreateMovie(w http.ResponseWriter,r *http.Request){
-c
+
 	var movie model.Netflix
 	_:= json.NewDecoder(r.Body).Decode(&movie)
 	insetOneMovie(movie)
